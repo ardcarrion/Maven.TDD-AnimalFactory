@@ -31,4 +31,24 @@ public class DogHouseTest {
         // Then
         DogHouse.getNumberOfDogs();
     }
+    @Test
+    public void add() {
+    }
+
+    @Test
+    public void remove() {
+    }
+
+    @Test
+    public void remove1() {
+    }
+
+    @Test
+    public void getDogById() {
+    }
+
+    @Test
+    public void getNumberOfDogs() {
+    }
+
 }
