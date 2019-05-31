@@ -2,8 +2,12 @@ package rocks.zipcodewilmington;
 
 import org.junit.Assert;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.animal_creation.AnimalFactory;
 import rocks.zipcodewilmington.animals.animal_storage.CatHouse;
+
+import java.util.Date;
 
 /**
  * @author leon on 4/19/18.
@@ -16,57 +20,69 @@ public class CatHouseTest {
     // TODO - Create tests for `Integer getNumberOfCats()`
     @Test
     public void addTest() {
-        CatHouse catHouse = new CatHouse();
-        Cat cat = new Cat(null,null,null);
-        catHouse.add(cat);
+        String givenName = "Luna";
+        Date birthDate = new Date();
+        Cat cat = AnimalFactory.createCat(givenName,birthDate);
+        CatHouse.clear();
+        CatHouse.add(cat);
         Integer expected = 1;
-        Integer actual = catHouse.getNumberOfCats();
+        Integer actual = CatHouse.getNumberOfCats();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void removeByCatTest() {
-        CatHouse catHouse1 = new CatHouse();
-        Cat luna = new Cat(null,null,null);
-        catHouse1.add(luna);
-        catHouse1.remove(luna);
+        String givenName = "Luna";
+        Date birthDate = new Date();
+        Integer givenId = 0;
+        Cat cat = new Cat(givenName,birthDate,givenId);
+        CatHouse.clear();
+
+        CatHouse.add(cat);
+        CatHouse.remove(cat);
         Integer expected = 0;
-        Integer actual = catHouse1.getNumberOfCats();
+        Integer actual = CatHouse.getNumberOfCats();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void removeByIdTest() {
-        CatHouse catHouse2 = new CatHouse();
+        String givenName = "Leo";
+        Date birthDate = new Date();
         Integer givenId = 0;
-        Cat leo = new Cat(null,null, givenId);
-        catHouse2.add(leo);
-        catHouse2.remove(givenId);
+        Cat leo = new Cat(givenName, birthDate, givenId);
+        CatHouse.clear();
+
+        CatHouse.add(leo);
+        CatHouse.remove(givenId);
         Integer expected = 0;
-        Integer actual = catHouse2.getNumberOfCats();
+        Integer actual = CatHouse.getNumberOfCats();
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void getCatByIdTest() {
-        CatHouse catHouse3 = new CatHouse();
+        String givenName = "Leo";
+        Date birthDate = new Date();
         Integer givenId = 0;
-        Cat midnight = new Cat(null,null, givenId);
-        catHouse3.add(midnight);
-        Cat expected = midnight;
-        Cat actual = catHouse3.getCatById(givenId);
+        Cat leo = new Cat(givenName, birthDate, givenId);
+        CatHouse.clear();
+
+        CatHouse.add(leo);
+        Cat expected = leo;
+        Cat actual = CatHouse.getCatById(givenId);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void getNumberOfCatsTest() {
-        CatHouse catHouse4 = new CatHouse();
         Cat ninja = new Cat(null,null,0);
         Cat newCat = new Cat(null,null,1);
-        catHouse4.add(ninja);
-        catHouse4.add(newCat);
+        CatHouse.clear();
+        CatHouse.add(ninja);
+        CatHouse.add(newCat);
         Integer expected = 2;
-        Integer actual = catHouse4.getNumberOfCats();
+        Integer actual = CatHouse.getNumberOfCats();
         Assert.assertEquals(expected, actual);
     }
 
